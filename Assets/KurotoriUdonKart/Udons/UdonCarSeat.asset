@@ -1,0 +1,1653 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
+  m_Name: UdonCarSeat
+  m_EditorClassIdentifier: 
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 0ba26559e1ae35a4ababaf7edaad6352,
+    type: 2}
+  udonAssembly: ".data_start\r\n\r\n    .export carSystem\r\n    .export exitPoint\r\n
+    \   .export throttleR\r\n    .export throttleL\r\n    .export handle\r\n    .export
+    seatSetting\r\n    .export carState\r\n    .export leaveButton\r\n    .export
+    SyncUdonObjects\r\n\r\n    __refl_const_intnl_udonTypeID: %SystemInt64, null\r\n
+    \   __refl_const_intnl_udonTypeName: %SystemString, null\r\n    carState: %UnityEngineGameObject,
+    null\r\n    exitPoint: %UnityEngineGameObject, null\r\n    handle: %UnityEngineGameObject,
+    null\r\n    leaveButton: %UnityEngineGameObject, null\r\n    seatSetting: %UnityEngineGameObject,
+    null\r\n    throttleL: %UnityEngineGameObject, null\r\n    throttleR: %UnityEngineGameObject,
+    null\r\n    SyncUdonObjects: %UnityEngineGameObjectArray, null\r\n    carSystem:
+    %VRCUdonUdonBehaviour, null\r\n    __0_i_Int32: %SystemInt32, null\r\n    __0_const_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __1_const_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __0_const_intnl_UnityEngineGameObjectArray: %UnityEngineGameObjectArray, null\r\n
+    \   __0_const_intnl_SystemInt32: %SystemInt32, null\r\n    __1_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_const_intnl_SystemObject: %SystemObject, null\r\n
+    \   __0_const_intnl_SystemString: %SystemString, null\r\n    __0_const_intnl_SystemUInt32:
+    %SystemUInt32, null\r\n    __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __0_intnl_UnityEngineGameObject: %UnityEngineGameObject,
+    null\r\n    __1_intnl_UnityEngineGameObject: %UnityEngineGameObject, null\r\n
+    \   __0_intnl_UnityEngineGameObjectArray: %UnityEngineGameObjectArray, null\r\n
+    \   __0_intnl_SystemInt32: %SystemInt32, null\r\n    __1_intnl_SystemInt32: %SystemInt32,
+    null\r\n    __2_intnl_SystemInt32: %SystemInt32, null\r\n    __0_intnl_UnityEngineQuaternion:
+    %UnityEngineQuaternion, null\r\n    __0_intnl_UnityEngineTransform: %UnityEngineTransform,
+    null\r\n    __1_intnl_UnityEngineTransform: %UnityEngineTransform, null\r\n    __0_intnl_returnTarget_UInt32:
+    %SystemUInt32, null\r\n    __0_intnl_UnityEngineVector3: %UnityEngineVector3,
+    null\r\n    __0_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null\r\n
+    \   __1_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null\r\n    __2_intnl_VRCSDKBaseVRCPlayerApi:
+    %VRCSDKBaseVRCPlayerApi, null\r\n    __3_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi,
+    null\r\n    __4_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null\r\n
+    \   __5_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null\r\n    __6_intnl_VRCSDKBaseVRCPlayerApi:
+    %VRCSDKBaseVRCPlayerApi, null\r\n    __7_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi,
+    null\r\n    __8_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null\r\n
+    \   __9_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null\r\n\r\n.data_end\r\n\r\n
+    \       \r\n         # using UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n
+    \       \r\n         # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n
+    \       \r\n         # public class UdonCarSeat : UdonSharpBehaviour\r\n.code_start\r\n
+    \       \r\n         # public UdonCarSystem carSystem;\r\n        \r\n         #
+    public GameObject exitPoint;\r\n        \r\n         # public GameObject throttleR,
+    throttleL, handle, seatSetting, carState;\r\n        \r\n         # public GameObject
+    leaveButton;\r\n        \r\n         # public GameObject[] SyncUdonObjects;\r\n
+    \       \r\n         # void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # public override void Interact()\r\n    .export
+    _interact\r\n        \r\n    _interact:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
+    {\r\n        \r\n         # Networking.LocalPlayer.UseAttachedStation();\r\n        PUSH,
+    __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__UseAttachedStation__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, carSystem.gameObject);\r\n
+    \       PUSH, __1_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, carSystem\r\n        PUSH, __0_intnl_UnityEngineGameObject\r\n        EXTERN,
+    \"UnityEngineComponent.__get_gameObject__UnityEngineGameObject\"\r\n        PUSH,
+    __1_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # carSystem.OnSeat();\r\n        PUSH, carSystem\r\n        PUSH,
+    __0_const_intnl_SystemString\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, throttleR);\r\n
+    \       PUSH, __2_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __2_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, throttleR\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, throttleL);\r\n
+    \       PUSH, __3_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __3_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, throttleL\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, handle);\r\n
+    \       PUSH, __4_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __4_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, handle\r\n        EXTERN,
+    \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, seatSetting);\r\n
+    \       PUSH, __5_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __5_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, seatSetting\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, leaveButton);\r\n
+    \       PUSH, __6_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __6_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, leaveButton\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # Networking.SetOwner(Networking.LocalPlayer, carState);\r\n
+    \       PUSH, __7_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __7_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, carState\r\n        EXTERN,
+    \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # if(SyncUdonObjects != null)\r\n        PUSH, SyncUdonObjects\r\n
+    \       PUSH, __0_intnl_UnityEngineGameObjectArray\r\n        COPY\r\n        PUSH,
+    __0_intnl_UnityEngineGameObjectArray\r\n        PUSH, __0_const_intnl_UnityEngineGameObjectArray\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemObject.__op_Inequality__SystemObject_SystemObject__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000002D0\r\n
+    \       \r\n         # {\r\n        \r\n         # for(int i = 0; i < SyncUdonObjects.Length;
+    ++i)\r\n        PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n
+    \       COPY\r\n        PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_SystemInt32\r\n
+    \       COPY\r\n        PUSH, SyncUdonObjects\r\n        PUSH, __1_intnl_SystemInt32\r\n
+    \       EXTERN, \"UnityEngineGameObjectArray.__get_Length__SystemInt32\"\r\n        PUSH,
+    __0_intnl_SystemInt32\r\n        PUSH, __1_intnl_SystemInt32\r\n        PUSH,
+    __1_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000002D0\r\n
+    \       \r\n         # {\r\n        \r\n         # Networking.SetOwner(Networking.LocalPlayer,
+    SyncUdonObjects[i]);\r\n        PUSH, __8_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN,
+    \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n        PUSH,
+    SyncUdonObjects\r\n        PUSH, __0_i_Int32\r\n        PUSH, __1_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"UnityEngineGameObjectArray.__Get__SystemInt32__UnityEngineGameObject\"\r\n
+    \       PUSH, __8_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __1_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       PUSH, __0_i_Int32\r\n        PUSH, __1_const_intnl_SystemInt32\r\n        PUSH,
+    __2_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
+    \       JUMP, 0x000001F0\r\n        \r\n         # leaveButton.SetActive(true);\r\n
+    \       PUSH, leaveButton\r\n        PUSH, __0_const_intnl_SystemBoolean\r\n        EXTERN,
+    \"UnityEngineGameObject.__SetActive__SystemBoolean__SystemVoid\"\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # public void
+    LeaveSeat()\r\n    .export LeaveSeat\r\n        \r\n    LeaveSeat:\r\n        \r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # Networking.LocalPlayer.TeleportTo(exitPoint.transform.position,
+    exitPoint.transform.rotation);\r\n        PUSH, exitPoint\r\n        PUSH, __0_intnl_UnityEngineTransform\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n
+    \       PUSH, __0_intnl_UnityEngineTransform\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n
+    \       EXTERN, \"UnityEngineTransform.__get_position__UnityEngineVector3\"\r\n
+    \       PUSH, exitPoint\r\n        PUSH, __1_intnl_UnityEngineTransform\r\n        EXTERN,
+    \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n        PUSH,
+    __1_intnl_UnityEngineTransform\r\n        PUSH, __0_intnl_UnityEngineQuaternion\r\n
+    \       EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, __9_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __9_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__TeleportTo__UnityEngineVector3_UnityEngineQuaternion__SystemVoid\"\r\n
+    \       \r\n         # leaveButton.SetActive(false);\r\n        PUSH, leaveButton\r\n
+    \       PUSH, __1_const_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineGameObject.__SetActive__SystemBoolean__SystemVoid\"\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
+  assemblyError: 
+  sourceCsScript: {fileID: 11500000, guid: 839c7504d8779d145aac5ebd684bce51, type: 3}
+  behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
+  compileErrors: []
+  debugInfo:
+    serializedDebugSpans:
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 0
+      endSourceChar: 2
+      line: 0
+      lineChar: 0
+      spanCodeSection: "\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 2
+      line: 1
+      lineChar: 0
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 8
+      line: 1
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 8
+      endSourceChar: 20
+      line: 1
+      lineChar: 6
+      spanCodeSection: "UdonSharp;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 20
+      endSourceChar: 26
+      line: 2
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 26
+      endSourceChar: 40
+      line: 2
+      lineChar: 6
+      spanCodeSection: "UnityEngine;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 40
+      endSourceChar: 46
+      line: 3
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 46
+      line: 3
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 50
+      line: 3
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 50
+      endSourceChar: 60
+      line: 3
+      lineChar: 10
+      spanCodeSection: "SDKBase;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 60
+      endSourceChar: 66
+      line: 4
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 66
+      endSourceChar: 66
+      line: 4
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 66
+      endSourceChar: 70
+      line: 4
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 70
+      endSourceChar: 79
+      line: 4
+      lineChar: 10
+      spanCodeSection: "Udon;\r\n\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 79
+      endSourceChar: 104
+      line: 6
+      lineChar: 0
+      spanCodeSection: 'public class UdonCarSeat '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 104
+      endSourceChar: 106
+      line: 6
+      lineChar: 25
+      spanCodeSection: ': '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 106
+      endSourceChar: 106
+      line: 6
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 106
+      endSourceChar: 135
+      line: 6
+      lineChar: 27
+      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 135
+      endSourceChar: 142
+      line: 9
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 142
+      endSourceChar: 142
+      line: 9
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 142
+      endSourceChar: 172
+      line: 9
+      lineChar: 11
+      spanCodeSection: "UdonCarSystem carSystem;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 172
+      endSourceChar: 179
+      line: 10
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 179
+      endSourceChar: 179
+      line: 10
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 179
+      endSourceChar: 208
+      line: 10
+      lineChar: 11
+      spanCodeSection: "GameObject exitPoint;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 208
+      endSourceChar: 215
+      line: 12
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 215
+      endSourceChar: 215
+      line: 12
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 215
+      endSourceChar: 284
+      line: 12
+      lineChar: 11
+      spanCodeSection: "GameObject throttleR, throttleL, handle, seatSetting, carState;\r\n
+        \   "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 284
+      endSourceChar: 291
+      line: 13
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 291
+      endSourceChar: 291
+      line: 13
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 291
+      endSourceChar: 322
+      line: 13
+      lineChar: 11
+      spanCodeSection: "GameObject leaveButton;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 322
+      endSourceChar: 329
+      line: 15
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 329
+      endSourceChar: 329
+      line: 15
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 329
+      endSourceChar: 329
+      line: 15
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 329
+      endSourceChar: 366
+      line: 15
+      lineChar: 11
+      spanCodeSection: "GameObject[] SyncUdonObjects;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: 19
+      startSourceChar: 366
+      endSourceChar: 384
+      line: 17
+      lineChar: 4
+      spanCodeSection: "void Start()\r\n    "
+    - startInstruction: 20
+      endInstruction: 27
+      startSourceChar: 384
+      endSourceChar: 410
+      line: 18
+      lineChar: 4
+      spanCodeSection: "{\r\n        \r\n    }\r\n\r\n    "
+    - startInstruction: 28
+      endInstruction: 47
+      startSourceChar: 410
+      endSourceChar: 447
+      line: 22
+      lineChar: 4
+      spanCodeSection: "public override void Interact()\r\n    "
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 447
+      endSourceChar: 458
+      line: 23
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 458
+      endSourceChar: 458
+      line: 24
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 458
+      endSourceChar: 458
+      line: 24
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 458
+      endSourceChar: 458
+      line: 24
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 458
+      endSourceChar: 458
+      line: 24
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 458
+      endSourceChar: 469
+      line: 24
+      lineChar: 8
+      spanCodeSection: Networking.
+    - startInstruction: 48
+      endInstruction: 47
+      startSourceChar: 469
+      endSourceChar: 481
+      line: 24
+      lineChar: 19
+      spanCodeSection: LocalPlayer.
+    - startInstruction: 48
+      endInstruction: 79
+      startSourceChar: 481
+      endSourceChar: 514
+      line: 24
+      lineChar: 31
+      spanCodeSection: "UseAttachedStation();\r\n\r\n        "
+    - startInstruction: 80
+      endInstruction: 79
+      startSourceChar: 514
+      endSourceChar: 514
+      line: 26
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 80
+      endInstruction: 79
+      startSourceChar: 514
+      endSourceChar: 534
+      line: 26
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 80
+      endInstruction: 79
+      startSourceChar: 534
+      endSourceChar: 534
+      line: 26
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 80
+      endInstruction: 79
+      startSourceChar: 534
+      endSourceChar: 545
+      line: 26
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 80
+      endInstruction: 95
+      startSourceChar: 545
+      endSourceChar: 558
+      line: 26
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 96
+      endInstruction: 95
+      startSourceChar: 558
+      endSourceChar: 558
+      line: 26
+      lineChar: 52
+      spanCodeSection: 
+    - startInstruction: 96
+      endInstruction: 95
+      startSourceChar: 558
+      endSourceChar: 568
+      line: 26
+      lineChar: 52
+      spanCodeSection: carSystem.
+    - startInstruction: 96
+      endInstruction: 143
+      startSourceChar: 568
+      endSourceChar: 590
+      line: 26
+      lineChar: 62
+      spanCodeSection: "gameObject);\r\n        "
+    - startInstruction: 144
+      endInstruction: 143
+      startSourceChar: 590
+      endSourceChar: 590
+      line: 27
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 144
+      endInstruction: 143
+      startSourceChar: 590
+      endSourceChar: 590
+      line: 27
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 144
+      endInstruction: 143
+      startSourceChar: 590
+      endSourceChar: 590
+      line: 27
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 144
+      endInstruction: 143
+      startSourceChar: 590
+      endSourceChar: 600
+      line: 27
+      lineChar: 8
+      spanCodeSection: carSystem.
+    - startInstruction: 144
+      endInstruction: 167
+      startSourceChar: 600
+      endSourceChar: 621
+      line: 27
+      lineChar: 18
+      spanCodeSection: "OnSeat();\r\n\r\n        "
+    - startInstruction: 168
+      endInstruction: 167
+      startSourceChar: 621
+      endSourceChar: 621
+      line: 29
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 168
+      endInstruction: 167
+      startSourceChar: 621
+      endSourceChar: 641
+      line: 29
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 168
+      endInstruction: 167
+      startSourceChar: 641
+      endSourceChar: 641
+      line: 29
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 168
+      endInstruction: 167
+      startSourceChar: 641
+      endSourceChar: 652
+      line: 29
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 168
+      endInstruction: 183
+      startSourceChar: 652
+      endSourceChar: 665
+      line: 29
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 184
+      endInstruction: 207
+      startSourceChar: 665
+      endSourceChar: 686
+      line: 29
+      lineChar: 52
+      spanCodeSection: "throttleR);\r\n        "
+    - startInstruction: 208
+      endInstruction: 207
+      startSourceChar: 686
+      endSourceChar: 686
+      line: 30
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 208
+      endInstruction: 207
+      startSourceChar: 686
+      endSourceChar: 706
+      line: 30
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 208
+      endInstruction: 207
+      startSourceChar: 706
+      endSourceChar: 706
+      line: 30
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 208
+      endInstruction: 207
+      startSourceChar: 706
+      endSourceChar: 717
+      line: 30
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 208
+      endInstruction: 223
+      startSourceChar: 717
+      endSourceChar: 730
+      line: 30
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 224
+      endInstruction: 247
+      startSourceChar: 730
+      endSourceChar: 751
+      line: 30
+      lineChar: 52
+      spanCodeSection: "throttleL);\r\n        "
+    - startInstruction: 248
+      endInstruction: 247
+      startSourceChar: 751
+      endSourceChar: 751
+      line: 31
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 248
+      endInstruction: 247
+      startSourceChar: 751
+      endSourceChar: 771
+      line: 31
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 248
+      endInstruction: 247
+      startSourceChar: 771
+      endSourceChar: 771
+      line: 31
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 248
+      endInstruction: 247
+      startSourceChar: 771
+      endSourceChar: 782
+      line: 31
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 248
+      endInstruction: 263
+      startSourceChar: 782
+      endSourceChar: 795
+      line: 31
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 264
+      endInstruction: 287
+      startSourceChar: 795
+      endSourceChar: 813
+      line: 31
+      lineChar: 52
+      spanCodeSection: "handle);\r\n        "
+    - startInstruction: 288
+      endInstruction: 287
+      startSourceChar: 813
+      endSourceChar: 813
+      line: 32
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 288
+      endInstruction: 287
+      startSourceChar: 813
+      endSourceChar: 833
+      line: 32
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 288
+      endInstruction: 287
+      startSourceChar: 833
+      endSourceChar: 833
+      line: 32
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 288
+      endInstruction: 287
+      startSourceChar: 833
+      endSourceChar: 844
+      line: 32
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 288
+      endInstruction: 303
+      startSourceChar: 844
+      endSourceChar: 857
+      line: 32
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 304
+      endInstruction: 327
+      startSourceChar: 857
+      endSourceChar: 880
+      line: 32
+      lineChar: 52
+      spanCodeSection: "seatSetting);\r\n        "
+    - startInstruction: 328
+      endInstruction: 327
+      startSourceChar: 880
+      endSourceChar: 880
+      line: 33
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 328
+      endInstruction: 327
+      startSourceChar: 880
+      endSourceChar: 900
+      line: 33
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 328
+      endInstruction: 327
+      startSourceChar: 900
+      endSourceChar: 900
+      line: 33
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 328
+      endInstruction: 327
+      startSourceChar: 900
+      endSourceChar: 911
+      line: 33
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 328
+      endInstruction: 343
+      startSourceChar: 911
+      endSourceChar: 924
+      line: 33
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 344
+      endInstruction: 367
+      startSourceChar: 924
+      endSourceChar: 947
+      line: 33
+      lineChar: 52
+      spanCodeSection: "leaveButton);\r\n        "
+    - startInstruction: 368
+      endInstruction: 367
+      startSourceChar: 947
+      endSourceChar: 947
+      line: 34
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 368
+      endInstruction: 367
+      startSourceChar: 947
+      endSourceChar: 967
+      line: 34
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 368
+      endInstruction: 367
+      startSourceChar: 967
+      endSourceChar: 967
+      line: 34
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 368
+      endInstruction: 367
+      startSourceChar: 967
+      endSourceChar: 978
+      line: 34
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 368
+      endInstruction: 383
+      startSourceChar: 978
+      endSourceChar: 991
+      line: 34
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 384
+      endInstruction: 407
+      startSourceChar: 991
+      endSourceChar: 1013
+      line: 34
+      lineChar: 52
+      spanCodeSection: "carState);\r\n\r\n        "
+    - startInstruction: 408
+      endInstruction: 407
+      startSourceChar: 1013
+      endSourceChar: 1016
+      line: 36
+      lineChar: 8
+      spanCodeSection: if(
+    - startInstruction: 408
+      endInstruction: 407
+      startSourceChar: 1016
+      endSourceChar: 1016
+      line: 36
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 408
+      endInstruction: 427
+      startSourceChar: 1016
+      endSourceChar: 1035
+      line: 36
+      lineChar: 11
+      spanCodeSection: 'SyncUdonObjects != '
+    - startInstruction: 428
+      endInstruction: 475
+      startSourceChar: 1035
+      endSourceChar: 1050
+      line: 36
+      lineChar: 30
+      spanCodeSection: "null)\r\n        "
+    - startInstruction: 476
+      endInstruction: 475
+      startSourceChar: 1050
+      endSourceChar: 1065
+      line: 37
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 476
+      endInstruction: 475
+      startSourceChar: 1065
+      endSourceChar: 1069
+      line: 38
+      lineChar: 12
+      spanCodeSection: for(
+    - startInstruction: 476
+      endInstruction: 475
+      startSourceChar: 1069
+      endSourceChar: 1069
+      line: 38
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 476
+      endInstruction: 475
+      startSourceChar: 1069
+      endSourceChar: 1069
+      line: 38
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 476
+      endInstruction: 475
+      startSourceChar: 1069
+      endSourceChar: 1075
+      line: 38
+      lineChar: 16
+      spanCodeSection: 'int i '
+    - startInstruction: 476
+      endInstruction: 475
+      startSourceChar: 1075
+      endSourceChar: 1077
+      line: 38
+      lineChar: 22
+      spanCodeSection: '= '
+    - startInstruction: 476
+      endInstruction: 495
+      startSourceChar: 1077
+      endSourceChar: 1080
+      line: 38
+      lineChar: 24
+      spanCodeSection: '0; '
+    - startInstruction: 496
+      endInstruction: 495
+      startSourceChar: 1080
+      endSourceChar: 1080
+      line: 38
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 496
+      endInstruction: 515
+      startSourceChar: 1080
+      endSourceChar: 1084
+      line: 38
+      lineChar: 27
+      spanCodeSection: 'i < '
+    - startInstruction: 516
+      endInstruction: 515
+      startSourceChar: 1084
+      endSourceChar: 1084
+      line: 38
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 516
+      endInstruction: 515
+      startSourceChar: 1084
+      endSourceChar: 1100
+      line: 38
+      lineChar: 31
+      spanCodeSection: SyncUdonObjects.
+    - startInstruction: 516
+      endInstruction: 587
+      startSourceChar: 1100
+      endSourceChar: 1126
+      line: 38
+      lineChar: 47
+      spanCodeSection: "Length; ++i)\r\n            "
+    - startInstruction: 588
+      endInstruction: 587
+      startSourceChar: 1126
+      endSourceChar: 1145
+      line: 39
+      lineChar: 12
+      spanCodeSection: "{\r\n                "
+    - startInstruction: 588
+      endInstruction: 587
+      startSourceChar: 1145
+      endSourceChar: 1145
+      line: 40
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 588
+      endInstruction: 587
+      startSourceChar: 1145
+      endSourceChar: 1165
+      line: 40
+      lineChar: 16
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 588
+      endInstruction: 587
+      startSourceChar: 1165
+      endSourceChar: 1165
+      line: 40
+      lineChar: 36
+      spanCodeSection: 
+    - startInstruction: 588
+      endInstruction: 587
+      startSourceChar: 1165
+      endSourceChar: 1176
+      line: 40
+      lineChar: 36
+      spanCodeSection: Networking.
+    - startInstruction: 588
+      endInstruction: 603
+      startSourceChar: 1176
+      endSourceChar: 1189
+      line: 40
+      lineChar: 47
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 604
+      endInstruction: 603
+      startSourceChar: 1189
+      endSourceChar: 1189
+      line: 40
+      lineChar: 60
+      spanCodeSection: 
+    - startInstruction: 604
+      endInstruction: 603
+      startSourceChar: 1189
+      endSourceChar: 1205
+      line: 40
+      lineChar: 60
+      spanCodeSection: SyncUdonObjects[
+    - startInstruction: 604
+      endInstruction: 603
+      startSourceChar: 1205
+      endSourceChar: 1205
+      line: 40
+      lineChar: 76
+      spanCodeSection: 
+    - startInstruction: 604
+      endInstruction: 719
+      startSourceChar: 1205
+      endSourceChar: 1247
+      line: 40
+      lineChar: 76
+      spanCodeSection: "i]);\r\n            }\r\n        }\r\n\r\n        "
+    - startInstruction: 720
+      endInstruction: 719
+      startSourceChar: 1247
+      endSourceChar: 1247
+      line: 44
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 720
+      endInstruction: 719
+      startSourceChar: 1247
+      endSourceChar: 1269
+      line: 44
+      lineChar: 8
+      spanCodeSection: leaveButton.SetActive(
+    - startInstruction: 720
+      endInstruction: 751
+      startSourceChar: 1269
+      endSourceChar: 1290
+      line: 44
+      lineChar: 30
+      spanCodeSection: "true);\r\n    }\r\n\r\n    "
+    - startInstruction: 752
+      endInstruction: 771
+      startSourceChar: 1290
+      endSourceChar: 1319
+      line: 47
+      lineChar: 4
+      spanCodeSection: "public void LeaveSeat()\r\n    "
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1319
+      endSourceChar: 1330
+      line: 48
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1330
+      endSourceChar: 1330
+      line: 49
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1330
+      endSourceChar: 1364
+      line: 49
+      lineChar: 8
+      spanCodeSection: Networking.LocalPlayer.TeleportTo(
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1364
+      endSourceChar: 1364
+      line: 49
+      lineChar: 42
+      spanCodeSection: 
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1364
+      endSourceChar: 1364
+      line: 49
+      lineChar: 42
+      spanCodeSection: 
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1364
+      endSourceChar: 1374
+      line: 49
+      lineChar: 42
+      spanCodeSection: exitPoint.
+    - startInstruction: 772
+      endInstruction: 771
+      startSourceChar: 1374
+      endSourceChar: 1384
+      line: 49
+      lineChar: 52
+      spanCodeSection: transform.
+    - startInstruction: 772
+      endInstruction: 819
+      startSourceChar: 1384
+      endSourceChar: 1394
+      line: 49
+      lineChar: 62
+      spanCodeSection: 'position, '
+    - startInstruction: 820
+      endInstruction: 819
+      startSourceChar: 1394
+      endSourceChar: 1394
+      line: 49
+      lineChar: 72
+      spanCodeSection: 
+    - startInstruction: 820
+      endInstruction: 819
+      startSourceChar: 1394
+      endSourceChar: 1394
+      line: 49
+      lineChar: 72
+      spanCodeSection: 
+    - startInstruction: 820
+      endInstruction: 819
+      startSourceChar: 1394
+      endSourceChar: 1404
+      line: 49
+      lineChar: 72
+      spanCodeSection: exitPoint.
+    - startInstruction: 820
+      endInstruction: 819
+      startSourceChar: 1404
+      endSourceChar: 1414
+      line: 49
+      lineChar: 82
+      spanCodeSection: transform.
+    - startInstruction: 820
+      endInstruction: 915
+      startSourceChar: 1414
+      endSourceChar: 1434
+      line: 49
+      lineChar: 92
+      spanCodeSection: "rotation);\r\n        "
+    - startInstruction: 916
+      endInstruction: 915
+      startSourceChar: 1434
+      endSourceChar: 1434
+      line: 50
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 916
+      endInstruction: 915
+      startSourceChar: 1434
+      endSourceChar: 1456
+      line: 50
+      lineChar: 8
+      spanCodeSection: leaveButton.SetActive(
+    - startInstruction: 916
+      endInstruction: 916
+      startSourceChar: 1456
+      endSourceChar: 1456
+      line: 50
+      lineChar: 30
+      spanCodeSection: 
+  hasInteractEvent: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11500000, guid: 0a0b73d8a8370f7479d917459a209277, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: fieldDefinitions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[UdonSharp.FieldDefinition,
+        UdonSharp.Editor]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: carSystem
+    - Name: $v
+      Entry: 7
+      Data: 2|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 3|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UdonCarSystem, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: VRCUdonUdonBehaviour
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: carSystem
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: carSystem
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: exitPoint
+    - Name: $v
+      Entry: 7
+      Data: 6|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 7|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.GameObject, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: exitPoint
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: exitPoint
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: throttleR
+    - Name: $v
+      Entry: 7
+      Data: 10|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 11|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: throttleR
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: throttleR
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: throttleL
+    - Name: $v
+      Entry: 7
+      Data: 13|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 14|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: throttleL
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: throttleL
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 12
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: handle
+    - Name: $v
+      Entry: 7
+      Data: 15|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 16|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: handle
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: handle
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 12
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: seatSetting
+    - Name: $v
+      Entry: 7
+      Data: 17|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 18|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: seatSetting
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: seatSetting
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 12
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: carState
+    - Name: $v
+      Entry: 7
+      Data: 19|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 20|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: carState
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: carState
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 12
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: leaveButton
+    - Name: $v
+      Entry: 7
+      Data: 21|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 22|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObject
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: leaveButton
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: leaveButton
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 23|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SyncUdonObjects
+    - Name: $v
+      Entry: 7
+      Data: 24|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 25|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 26|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.GameObject[], UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineGameObjectArray
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: SyncUdonObjects
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: SyncUdonObjects
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 27|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

@@ -1,0 +1,1995 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
+  m_Name: VehicleHandle
+  m_EditorClassIdentifier: 
+  serializedUdonProgramAsset: {fileID: 11400000, guid: c39fd7b9ffd645541b4374193103d9ff,
+    type: 2}
+  udonAssembly: ".data_start\r\n\r\n    .export leftHand\r\n    .export rightHand\r\n
+    \   .export pickupL\r\n    .export pickupR\r\n    .export angleText\r\n    .export
+    angle\r\n    .sync angle, none\r\n\r\n    __refl_const_intnl_udonTypeID: %SystemInt64,
+    null\r\n    __refl_const_intnl_udonTypeName: %SystemString, null\r\n    angle:
+    %SystemSingle, null\r\n    angleText: %UnityEngineUIText, null\r\n    leftHand:
+    %UnityEngineTransform, null\r\n    rightHand: %UnityEngineTransform, null\r\n
+    \   pickupL: %VRCSDK3ComponentsVRCPickup, null\r\n    pickupR: %VRCSDK3ComponentsVRCPickup,
+    null\r\n    rotL: %UnityEngineQuaternion, null\r\n    rotR: %UnityEngineQuaternion,
+    null\r\n    posL: %UnityEngineVector3, null\r\n    posR: %UnityEngineVector3,
+    null\r\n    __0_this_intnl_UnityEngineGameObject: %UnityEngineGameObject, this\r\n
+    \   __0_this_intnl_UnityEngineTransform: %UnityEngineTransform, this\r\n    __0_LtoR_Vector3:
+    %UnityEngineVector3, null\r\n    __0_const_intnl_SystemBoolean: %SystemBoolean,
+    null\r\n    __1_const_intnl_SystemBoolean: %SystemBoolean, null\r\n    __0_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_const_intnl_SystemObject: %SystemObject, null\r\n
+    \   __0_const_intnl_SystemSingle: %SystemSingle, null\r\n    __1_const_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __0_const_intnl_SystemString: %SystemString, null\r\n
+    \   __1_const_intnl_SystemString: %SystemString, null\r\n    __0_const_intnl_UnityEngineUIText:
+    %UnityEngineUIText, null\r\n    __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n
+    \   __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __2_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __3_intnl_SystemBoolean: %SystemBoolean, null\r\n    __0_intnl_UnityEngineQuaternion:
+    %UnityEngineQuaternion, null\r\n    __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion,
+    null\r\n    __2_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null\r\n
+    \   __0_intnl_SystemSingle: %SystemSingle, null\r\n    __1_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __2_intnl_SystemSingle: %SystemSingle, null\r\n    __3_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __4_intnl_SystemSingle: %SystemSingle, null\r\n    __5_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __6_intnl_SystemSingle: %SystemSingle, null\r\n    __7_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __8_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_SystemString:
+    %SystemString, null\r\n    __0_intnl_UnityEngineUIText: %UnityEngineUIText, null\r\n
+    \   __1_intnl_UnityEngineUIText: %UnityEngineUIText, null\r\n    __0_intnl_returnTarget_UInt32:
+    %SystemUInt32, null\r\n    __0_intnl_UnityEngineVector3: %UnityEngineVector3,
+    null\r\n    __1_intnl_UnityEngineVector3: %UnityEngineVector3, null\r\n    __2_intnl_UnityEngineVector3:
+    %UnityEngineVector3, null\r\n    __3_intnl_UnityEngineVector3: %UnityEngineVector3,
+    null\r\n    __4_intnl_UnityEngineVector3: %UnityEngineVector3, null\r\n    __5_intnl_UnityEngineVector3:
+    %UnityEngineVector3, null\r\n    __6_intnl_UnityEngineVector3: %UnityEngineVector3,
+    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n        \r\n
+    \        # using UnityEngine;\r\n        \r\n         # using UnityEngine.UI;\r\n
+    \       \r\n         # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n
+    \       \r\n         # public class VehicleHandle : UdonSharpBehaviour\r\n.code_start\r\n
+    \       \r\n         # public Transform leftHand;\r\n        \r\n         # public
+    Transform rightHand;\r\n        \r\n         # public VRC_Pickup pickupL, pickupR;\r\n
+    \       \r\n         # private Vector3 posL, posR;\r\n        \r\n         # private
+    Quaternion rotL, rotR;\r\n        \r\n         # public Text angleText;\r\n        \r\n
+    \        # void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # if (angleText
+    != null)  angleText.text = \"0\";\r\n        PUSH, angleText\r\n        PUSH,
+    __0_intnl_UnityEngineUIText\r\n        COPY\r\n        PUSH, __0_intnl_UnityEngineUIText\r\n
+    \       PUSH, __0_const_intnl_UnityEngineUIText\r\n        PUSH, __0_intnl_SystemBoolean\r\n
+    \       EXTERN, \"UnityEngineObject.__op_Inequality__UnityEngineObject_UnityEngineObject__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000070\r\n
+    \       PUSH, angleText\r\n        PUSH, __0_const_intnl_SystemString\r\n        EXTERN,
+    \"UnityEngineUIText.__set_text__SystemString__SystemVoid\"\r\n        \r\n         #
+    posL = leftHand.localPosition;\r\n        PUSH, leftHand\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n
+    \       EXTERN, \"UnityEngineTransform.__get_localPosition__UnityEngineVector3\"\r\n
+    \       PUSH, __0_intnl_UnityEngineVector3\r\n        PUSH, posL\r\n        COPY\r\n
+    \       \r\n         # posR = rightHand.localPosition;\r\n        PUSH, rightHand\r\n
+    \       PUSH, __1_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineTransform.__get_localPosition__UnityEngineVector3\"\r\n
+    \       PUSH, __1_intnl_UnityEngineVector3\r\n        PUSH, posR\r\n        COPY\r\n
+    \       \r\n         # rotL = leftHand.localRotation;\r\n        PUSH, leftHand\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineTransform.__get_localRotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, rotL\r\n        COPY\r\n
+    \       \r\n         # rotR = rightHand.localRotation;\r\n        PUSH, rightHand\r\n
+    \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineTransform.__get_localRotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        PUSH, rotR\r\n        COPY\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
+    \        # [UdonSynced(UdonSyncMode.None)]\r\n        \r\n         # public float
+    angle;\r\n        \r\n         # public void FixedUpdate()\r\n    .export _fixedUpdate\r\n
+    \       \r\n    _fixedUpdate:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
+    {\r\n        \r\n         # if (!Networking.IsOwner(gameObject)) return;\r\n        PUSH,
+    __0_this_intnl_UnityEngineGameObject\r\n        PUSH, __1_intnl_SystemBoolean\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__IsOwner__UnityEngineGameObject__SystemBoolean\"\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        PUSH, __2_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __2_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000184\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n         #
+    Vector3 LtoR = (rightHand.localPosition - leftHand.localPosition);\r\n        PUSH,
+    rightHand\r\n        PUSH, __2_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineTransform.__get_localPosition__UnityEngineVector3\"\r\n
+    \       PUSH, leftHand\r\n        PUSH, __3_intnl_UnityEngineVector3\r\n        EXTERN,
+    \"UnityEngineTransform.__get_localPosition__UnityEngineVector3\"\r\n        PUSH,
+    __2_intnl_UnityEngineVector3\r\n        PUSH, __3_intnl_UnityEngineVector3\r\n
+    \       PUSH, __4_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineVector3.__op_Subtraction__UnityEngineVector3_UnityEngineVector3__UnityEngineVector3\"\r\n
+    \       PUSH, __4_intnl_UnityEngineVector3\r\n        PUSH, __0_LtoR_Vector3\r\n
+    \       COPY\r\n        \r\n         # LtoR.z = 0.0f;\r\n        PUSH, __0_LtoR_Vector3\r\n
+    \       PUSH, __0_const_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineVector3.__set_z__SystemSingle\"\r\n
+    \       \r\n         # angle =  Mathf.Acos(Vector3.Dot(LtoR.normalized, Vector3.up))
+    * Mathf.Rad2Deg - 90.0f;\r\n        PUSH, __0_LtoR_Vector3\r\n        PUSH, __5_intnl_UnityEngineVector3\r\n
+    \       EXTERN, \"UnityEngineVector3.__get_normalized__UnityEngineVector3\"\r\n
+    \       PUSH, __6_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineVector3.__get_up__UnityEngineVector3\"\r\n
+    \       PUSH, __5_intnl_UnityEngineVector3\r\n        PUSH, __6_intnl_UnityEngineVector3\r\n
+    \       PUSH, __0_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineVector3.__Dot__UnityEngineVector3_UnityEngineVector3__SystemSingle\"\r\n
+    \       PUSH, __0_intnl_SystemSingle\r\n        PUSH, __1_intnl_SystemSingle\r\n
+    \       EXTERN, \"UnityEngineMathf.__Acos__SystemSingle__SystemSingle\"\r\n        PUSH,
+    __1_intnl_SystemSingle\r\n        PUSH, __2_intnl_SystemSingle\r\n        COPY\r\n
+    \       PUSH, __3_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineMathf.__get_Rad2Deg__SystemSingle\"\r\n
+    \       PUSH, __2_intnl_SystemSingle\r\n        PUSH, __3_intnl_SystemSingle\r\n
+    \       PUSH, __4_intnl_SystemSingle\r\n        EXTERN, \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\r\n
+    \       PUSH, __4_intnl_SystemSingle\r\n        PUSH, __5_intnl_SystemSingle\r\n
+    \       COPY\r\n        PUSH, __5_intnl_SystemSingle\r\n        PUSH, __1_const_intnl_SystemSingle\r\n
+    \       PUSH, __6_intnl_SystemSingle\r\n        EXTERN, \"SystemSingle.__op_Subtraction__SystemSingle_SystemSingle__SystemSingle\"\r\n
+    \       PUSH, __6_intnl_SystemSingle\r\n        PUSH, angle\r\n        COPY\r\n
+    \       \r\n         # if(angleText != null) angleText.text = angle.ToString(\"F1\");\r\n
+    \       PUSH, angleText\r\n        PUSH, __1_intnl_UnityEngineUIText\r\n        COPY\r\n
+    \       PUSH, __1_intnl_UnityEngineUIText\r\n        PUSH, __0_const_intnl_UnityEngineUIText\r\n
+    \       PUSH, __3_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineObject.__op_Inequality__UnityEngineObject_UnityEngineObject__SystemBoolean\"\r\n
+    \       PUSH, __3_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000368\r\n
+    \       PUSH, angle\r\n        PUSH, __1_const_intnl_SystemString\r\n        PUSH,
+    __0_intnl_SystemString\r\n        EXTERN, \"SystemSingle.__ToString__SystemString__SystemString\"\r\n
+    \       PUSH, angleText\r\n        PUSH, __0_intnl_SystemString\r\n        EXTERN,
+    \"UnityEngineUIText.__set_text__SystemString__SystemVoid\"\r\n        \r\n         #
+    transform.localRotation = Quaternion.Euler(0, 0, angle);\r\n        PUSH, __0_const_intnl_SystemInt32\r\n
+    \       PUSH, __7_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
+    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __8_intnl_SystemSingle\r\n
+    \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
+    __7_intnl_SystemSingle\r\n        PUSH, __8_intnl_SystemSingle\r\n        PUSH,
+    angle\r\n        PUSH, __2_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__Euler__SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_this_intnl_UnityEngineTransform\r\n        PUSH, __2_intnl_UnityEngineQuaternion\r\n
+    \       EXTERN, \"UnityEngineTransform.__set_localRotation__UnityEngineQuaternion__SystemVoid\"\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
+    \        # public void ForceDrop()\r\n    .export ForceDrop\r\n        \r\n    ForceDrop:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # pickupL.Drop();\r\n
+    \       PUSH, pickupL\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__Drop__SystemVoid\"\r\n
+    \       \r\n         # pickupR.Drop();\r\n        PUSH, pickupR\r\n        EXTERN,
+    \"VRCSDK3ComponentsVRCPickup.__Drop__SystemVoid\"\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # public void PickupDisable()\r\n    .export
+    PickupDisable\r\n        \r\n    PickupDisable:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
+    {\r\n        \r\n         # pickupL.pickupable = false;\r\n        PUSH, pickupL\r\n
+    \       PUSH, __0_const_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__set_pickupable__SystemBoolean\"\r\n
+    \       \r\n         # pickupR.pickupable = false;\r\n        PUSH, pickupR\r\n
+    \       PUSH, __0_const_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__set_pickupable__SystemBoolean\"\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
+    \        # public void PickupEnable()\r\n    .export PickupEnable\r\n        \r\n
+    \   PickupEnable:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
+    {\r\n        \r\n         # pickupL.pickupable = true;\r\n        PUSH, pickupL\r\n
+    \       PUSH, __1_const_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__set_pickupable__SystemBoolean\"\r\n
+    \       \r\n         # pickupR.pickupable = true;\r\n        PUSH, pickupR\r\n
+    \       PUSH, __1_const_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__set_pickupable__SystemBoolean\"\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
+    \        # public void ResetHandlePos()\r\n    .export ResetHandlePos\r\n        \r\n
+    \   ResetHandlePos:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
+    {\r\n        \r\n         # leftHand.localPosition = posL;\r\n        PUSH, leftHand\r\n
+    \       PUSH, posL\r\n        EXTERN, \"UnityEngineTransform.__set_localPosition__UnityEngineVector3__SystemVoid\"\r\n
+    \       \r\n         # rightHand.localPosition = posR;\r\n        PUSH, rightHand\r\n
+    \       PUSH, posR\r\n        EXTERN, \"UnityEngineTransform.__set_localPosition__UnityEngineVector3__SystemVoid\"\r\n
+    \       \r\n         # leftHand.localRotation = rotL;\r\n        PUSH, leftHand\r\n
+    \       PUSH, rotL\r\n        EXTERN, \"UnityEngineTransform.__set_localRotation__UnityEngineQuaternion__SystemVoid\"\r\n
+    \       \r\n         # rightHand.localRotation = rotR;\r\n        PUSH, rightHand\r\n
+    \       PUSH, rotR\r\n        EXTERN, \"UnityEngineTransform.__set_localRotation__UnityEngineQuaternion__SystemVoid\"\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
+  assemblyError: 
+  sourceCsScript: {fileID: 11500000, guid: 61adf924fba3e28419a147c21cd1b0d5, type: 3}
+  behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
+  compileErrors: []
+  debugInfo:
+    serializedDebugSpans:
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 0
+      endSourceChar: 2
+      line: 0
+      lineChar: 0
+      spanCodeSection: "\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 2
+      line: 1
+      lineChar: 0
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 8
+      line: 1
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 8
+      endSourceChar: 20
+      line: 1
+      lineChar: 6
+      spanCodeSection: "UdonSharp;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 20
+      endSourceChar: 26
+      line: 2
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 26
+      endSourceChar: 40
+      line: 2
+      lineChar: 6
+      spanCodeSection: "UnityEngine;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 40
+      endSourceChar: 46
+      line: 3
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 46
+      line: 3
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 58
+      line: 3
+      lineChar: 6
+      spanCodeSection: UnityEngine.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 58
+      endSourceChar: 63
+      line: 3
+      lineChar: 18
+      spanCodeSection: "UI;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 63
+      endSourceChar: 69
+      line: 4
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 69
+      endSourceChar: 69
+      line: 4
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 69
+      endSourceChar: 73
+      line: 4
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 73
+      endSourceChar: 83
+      line: 4
+      lineChar: 10
+      spanCodeSection: "SDKBase;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 83
+      endSourceChar: 89
+      line: 5
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 89
+      endSourceChar: 89
+      line: 5
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 89
+      endSourceChar: 93
+      line: 5
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 93
+      endSourceChar: 102
+      line: 5
+      lineChar: 10
+      spanCodeSection: "Udon;\r\n\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 102
+      endSourceChar: 129
+      line: 7
+      lineChar: 0
+      spanCodeSection: 'public class VehicleHandle '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 129
+      endSourceChar: 131
+      line: 7
+      lineChar: 27
+      spanCodeSection: ': '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 131
+      endSourceChar: 131
+      line: 7
+      lineChar: 29
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 131
+      endSourceChar: 160
+      line: 7
+      lineChar: 29
+      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 160
+      endSourceChar: 167
+      line: 10
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 167
+      endSourceChar: 167
+      line: 10
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 167
+      endSourceChar: 192
+      line: 10
+      lineChar: 11
+      spanCodeSection: "Transform leftHand;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 192
+      endSourceChar: 199
+      line: 11
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 199
+      endSourceChar: 199
+      line: 11
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 199
+      endSourceChar: 227
+      line: 11
+      lineChar: 11
+      spanCodeSection: "Transform rightHand;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 227
+      endSourceChar: 234
+      line: 13
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 234
+      endSourceChar: 234
+      line: 13
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 234
+      endSourceChar: 270
+      line: 13
+      lineChar: 11
+      spanCodeSection: "VRC_Pickup pickupL, pickupR;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 270
+      endSourceChar: 278
+      line: 15
+      lineChar: 4
+      spanCodeSection: 'private '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 278
+      endSourceChar: 278
+      line: 15
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 278
+      endSourceChar: 303
+      line: 15
+      lineChar: 12
+      spanCodeSection: "Vector3 posL, posR;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 303
+      endSourceChar: 311
+      line: 16
+      lineChar: 4
+      spanCodeSection: 'private '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 311
+      endSourceChar: 311
+      line: 16
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 311
+      endSourceChar: 343
+      line: 16
+      lineChar: 12
+      spanCodeSection: "Quaternion rotL, rotR;\r\n\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 343
+      endSourceChar: 350
+      line: 19
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 350
+      endSourceChar: 350
+      line: 19
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 350
+      endSourceChar: 373
+      line: 19
+      lineChar: 11
+      spanCodeSection: "Text angleText;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: 19
+      startSourceChar: 373
+      endSourceChar: 391
+      line: 21
+      lineChar: 4
+      spanCodeSection: "void Start()\r\n    "
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 391
+      endSourceChar: 402
+      line: 22
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 402
+      endSourceChar: 406
+      line: 23
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 406
+      endSourceChar: 406
+      line: 23
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 39
+      startSourceChar: 406
+      endSourceChar: 419
+      line: 23
+      lineChar: 12
+      spanCodeSection: 'angleText != '
+    - startInstruction: 40
+      endInstruction: 87
+      startSourceChar: 419
+      endSourceChar: 426
+      line: 23
+      lineChar: 25
+      spanCodeSection: 'null)  '
+    - startInstruction: 88
+      endInstruction: 87
+      startSourceChar: 426
+      endSourceChar: 426
+      line: 23
+      lineChar: 32
+      spanCodeSection: 
+    - startInstruction: 88
+      endInstruction: 87
+      startSourceChar: 426
+      endSourceChar: 443
+      line: 23
+      lineChar: 32
+      spanCodeSection: 'angleText.text = '
+    - startInstruction: 88
+      endInstruction: 111
+      startSourceChar: 443
+      endSourceChar: 459
+      line: 23
+      lineChar: 49
+      spanCodeSection: "\"0\";\r\n\r\n        "
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 459
+      endSourceChar: 459
+      line: 25
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 459
+      endSourceChar: 466
+      line: 25
+      lineChar: 8
+      spanCodeSection: 'posL = '
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 466
+      endSourceChar: 466
+      line: 25
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 466
+      endSourceChar: 475
+      line: 25
+      lineChar: 15
+      spanCodeSection: leftHand.
+    - startInstruction: 112
+      endInstruction: 155
+      startSourceChar: 475
+      endSourceChar: 499
+      line: 25
+      lineChar: 24
+      spanCodeSection: "localPosition;\r\n        "
+    - startInstruction: 156
+      endInstruction: 155
+      startSourceChar: 499
+      endSourceChar: 499
+      line: 26
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 156
+      endInstruction: 155
+      startSourceChar: 499
+      endSourceChar: 506
+      line: 26
+      lineChar: 8
+      spanCodeSection: 'posR = '
+    - startInstruction: 156
+      endInstruction: 155
+      startSourceChar: 506
+      endSourceChar: 506
+      line: 26
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 156
+      endInstruction: 155
+      startSourceChar: 506
+      endSourceChar: 516
+      line: 26
+      lineChar: 15
+      spanCodeSection: rightHand.
+    - startInstruction: 156
+      endInstruction: 199
+      startSourceChar: 516
+      endSourceChar: 542
+      line: 26
+      lineChar: 25
+      spanCodeSection: "localPosition;\r\n\r\n        "
+    - startInstruction: 200
+      endInstruction: 199
+      startSourceChar: 542
+      endSourceChar: 542
+      line: 28
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 200
+      endInstruction: 199
+      startSourceChar: 542
+      endSourceChar: 549
+      line: 28
+      lineChar: 8
+      spanCodeSection: 'rotL = '
+    - startInstruction: 200
+      endInstruction: 199
+      startSourceChar: 549
+      endSourceChar: 549
+      line: 28
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 200
+      endInstruction: 199
+      startSourceChar: 549
+      endSourceChar: 558
+      line: 28
+      lineChar: 15
+      spanCodeSection: leftHand.
+    - startInstruction: 200
+      endInstruction: 243
+      startSourceChar: 558
+      endSourceChar: 582
+      line: 28
+      lineChar: 24
+      spanCodeSection: "localRotation;\r\n        "
+    - startInstruction: 244
+      endInstruction: 243
+      startSourceChar: 582
+      endSourceChar: 582
+      line: 29
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 244
+      endInstruction: 243
+      startSourceChar: 582
+      endSourceChar: 589
+      line: 29
+      lineChar: 8
+      spanCodeSection: 'rotR = '
+    - startInstruction: 244
+      endInstruction: 243
+      startSourceChar: 589
+      endSourceChar: 589
+      line: 29
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 244
+      endInstruction: 243
+      startSourceChar: 589
+      endSourceChar: 599
+      line: 29
+      lineChar: 15
+      spanCodeSection: rightHand.
+    - startInstruction: 244
+      endInstruction: 295
+      startSourceChar: 599
+      endSourceChar: 628
+      line: 29
+      lineChar: 25
+      spanCodeSection: "localRotation;\r\n    }\r\n\r\n    "
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 628
+      endSourceChar: 629
+      line: 32
+      lineChar: 4
+      spanCodeSection: '['
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 629
+      endSourceChar: 640
+      line: 32
+      lineChar: 5
+      spanCodeSection: UdonSynced(
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 640
+      endSourceChar: 640
+      line: 32
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 640
+      endSourceChar: 653
+      line: 32
+      lineChar: 16
+      spanCodeSection: UdonSyncMode.
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 653
+      endSourceChar: 653
+      line: 32
+      lineChar: 29
+      spanCodeSection: 
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 653
+      endSourceChar: 672
+      line: 32
+      lineChar: 29
+      spanCodeSection: "None)]\r\n    public "
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 672
+      endSourceChar: 672
+      line: 33
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 672
+      endSourceChar: 696
+      line: 33
+      lineChar: 11
+      spanCodeSection: "float angle;\r\n\r\n\r\n\r\n    "
+    - startInstruction: 296
+      endInstruction: 315
+      startSourceChar: 696
+      endSourceChar: 727
+      line: 37
+      lineChar: 4
+      spanCodeSection: "public void FixedUpdate()\r\n    "
+    - startInstruction: 316
+      endInstruction: 315
+      startSourceChar: 727
+      endSourceChar: 738
+      line: 38
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 316
+      endInstruction: 315
+      startSourceChar: 738
+      endSourceChar: 742
+      line: 39
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 316
+      endInstruction: 315
+      startSourceChar: 742
+      endSourceChar: 743
+      line: 39
+      lineChar: 12
+      spanCodeSection: '!'
+    - startInstruction: 316
+      endInstruction: 315
+      startSourceChar: 743
+      endSourceChar: 762
+      line: 39
+      lineChar: 13
+      spanCodeSection: Networking.IsOwner(
+    - startInstruction: 316
+      endInstruction: 379
+      startSourceChar: 762
+      endSourceChar: 775
+      line: 39
+      lineChar: 32
+      spanCodeSection: 'gameObject)) '
+    - startInstruction: 380
+      endInstruction: 387
+      startSourceChar: 775
+      endSourceChar: 794
+      line: 39
+      lineChar: 45
+      spanCodeSection: "return;\r\n\r\n        "
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 794
+      endSourceChar: 794
+      line: 41
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 794
+      endSourceChar: 794
+      line: 41
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 794
+      endSourceChar: 794
+      line: 41
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 794
+      endSourceChar: 807
+      line: 41
+      lineChar: 8
+      spanCodeSection: 'Vector3 LtoR '
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 807
+      endSourceChar: 809
+      line: 41
+      lineChar: 21
+      spanCodeSection: '= '
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 809
+      endSourceChar: 810
+      line: 41
+      lineChar: 23
+      spanCodeSection: (
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 810
+      endSourceChar: 810
+      line: 41
+      lineChar: 24
+      spanCodeSection: 
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 810
+      endSourceChar: 810
+      line: 41
+      lineChar: 24
+      spanCodeSection: 
+    - startInstruction: 388
+      endInstruction: 387
+      startSourceChar: 810
+      endSourceChar: 820
+      line: 41
+      lineChar: 24
+      spanCodeSection: rightHand.
+    - startInstruction: 388
+      endInstruction: 411
+      startSourceChar: 820
+      endSourceChar: 836
+      line: 41
+      lineChar: 34
+      spanCodeSection: 'localPosition - '
+    - startInstruction: 412
+      endInstruction: 411
+      startSourceChar: 836
+      endSourceChar: 836
+      line: 41
+      lineChar: 50
+      spanCodeSection: 
+    - startInstruction: 412
+      endInstruction: 411
+      startSourceChar: 836
+      endSourceChar: 845
+      line: 41
+      lineChar: 50
+      spanCodeSection: leftHand.
+    - startInstruction: 412
+      endInstruction: 487
+      startSourceChar: 845
+      endSourceChar: 870
+      line: 41
+      lineChar: 59
+      spanCodeSection: "localPosition);\r\n        "
+    - startInstruction: 488
+      endInstruction: 487
+      startSourceChar: 870
+      endSourceChar: 870
+      line: 42
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 488
+      endInstruction: 487
+      startSourceChar: 870
+      endSourceChar: 879
+      line: 42
+      lineChar: 8
+      spanCodeSection: 'LtoR.z = '
+    - startInstruction: 488
+      endInstruction: 511
+      startSourceChar: 879
+      endSourceChar: 896
+      line: 42
+      lineChar: 17
+      spanCodeSection: "0.0f;\r\n\r\n        "
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 896
+      endSourceChar: 896
+      line: 44
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 896
+      endSourceChar: 905
+      line: 44
+      lineChar: 8
+      spanCodeSection: 'angle =  '
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 905
+      endSourceChar: 905
+      line: 44
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 905
+      endSourceChar: 905
+      line: 44
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 905
+      endSourceChar: 916
+      line: 44
+      lineChar: 17
+      spanCodeSection: Mathf.Acos(
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 916
+      endSourceChar: 928
+      line: 44
+      lineChar: 28
+      spanCodeSection: Vector3.Dot(
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 928
+      endSourceChar: 928
+      line: 44
+      lineChar: 40
+      spanCodeSection: 
+    - startInstruction: 512
+      endInstruction: 511
+      startSourceChar: 928
+      endSourceChar: 933
+      line: 44
+      lineChar: 40
+      spanCodeSection: LtoR.
+    - startInstruction: 512
+      endInstruction: 535
+      startSourceChar: 933
+      endSourceChar: 945
+      line: 44
+      lineChar: 45
+      spanCodeSection: 'normalized, '
+    - startInstruction: 536
+      endInstruction: 535
+      startSourceChar: 945
+      endSourceChar: 945
+      line: 44
+      lineChar: 57
+      spanCodeSection: 
+    - startInstruction: 536
+      endInstruction: 535
+      startSourceChar: 945
+      endSourceChar: 953
+      line: 44
+      lineChar: 57
+      spanCodeSection: Vector3.
+    - startInstruction: 536
+      endInstruction: 627
+      startSourceChar: 953
+      endSourceChar: 960
+      line: 44
+      lineChar: 65
+      spanCodeSection: 'up)) * '
+    - startInstruction: 628
+      endInstruction: 627
+      startSourceChar: 960
+      endSourceChar: 960
+      line: 44
+      lineChar: 72
+      spanCodeSection: 
+    - startInstruction: 628
+      endInstruction: 627
+      startSourceChar: 960
+      endSourceChar: 966
+      line: 44
+      lineChar: 72
+      spanCodeSection: Mathf.
+    - startInstruction: 628
+      endInstruction: 695
+      startSourceChar: 966
+      endSourceChar: 976
+      line: 44
+      lineChar: 78
+      spanCodeSection: 'Rad2Deg - '
+    - startInstruction: 696
+      endInstruction: 747
+      startSourceChar: 976
+      endSourceChar: 1002
+      line: 44
+      lineChar: 88
+      spanCodeSection: "90.0f;  \r\n      \r\n        "
+    - startInstruction: 748
+      endInstruction: 747
+      startSourceChar: 1002
+      endSourceChar: 1005
+      line: 46
+      lineChar: 8
+      spanCodeSection: if(
+    - startInstruction: 748
+      endInstruction: 747
+      startSourceChar: 1005
+      endSourceChar: 1005
+      line: 46
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 748
+      endInstruction: 767
+      startSourceChar: 1005
+      endSourceChar: 1018
+      line: 46
+      lineChar: 11
+      spanCodeSection: 'angleText != '
+    - startInstruction: 768
+      endInstruction: 815
+      startSourceChar: 1018
+      endSourceChar: 1024
+      line: 46
+      lineChar: 24
+      spanCodeSection: 'null) '
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 1024
+      endSourceChar: 1024
+      line: 46
+      lineChar: 30
+      spanCodeSection: 
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 1024
+      endSourceChar: 1041
+      line: 46
+      lineChar: 30
+      spanCodeSection: 'angleText.text = '
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 1041
+      endSourceChar: 1056
+      line: 46
+      lineChar: 47
+      spanCodeSection: angle.ToString(
+    - startInstruction: 816
+      endInstruction: 871
+      startSourceChar: 1056
+      endSourceChar: 1074
+      line: 46
+      lineChar: 62
+      spanCodeSection: "\"F1\");\r\n\r\n        "
+    - startInstruction: 872
+      endInstruction: 871
+      startSourceChar: 1074
+      endSourceChar: 1074
+      line: 48
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 872
+      endInstruction: 871
+      startSourceChar: 1074
+      endSourceChar: 1100
+      line: 48
+      lineChar: 8
+      spanCodeSection: 'transform.localRotation = '
+    - startInstruction: 872
+      endInstruction: 871
+      startSourceChar: 1100
+      endSourceChar: 1117
+      line: 48
+      lineChar: 34
+      spanCodeSection: Quaternion.Euler(
+    - startInstruction: 872
+      endInstruction: 871
+      startSourceChar: 1117
+      endSourceChar: 1120
+      line: 48
+      lineChar: 51
+      spanCodeSection: '0, '
+    - startInstruction: 872
+      endInstruction: 871
+      startSourceChar: 1120
+      endSourceChar: 1123
+      line: 48
+      lineChar: 54
+      spanCodeSection: '0, '
+    - startInstruction: 872
+      endInstruction: 991
+      startSourceChar: 1123
+      endSourceChar: 1145
+      line: 48
+      lineChar: 57
+      spanCodeSection: "angle);\r\n    }\r\n\r\n    "
+    - startInstruction: 992
+      endInstruction: 1011
+      startSourceChar: 1145
+      endSourceChar: 1174
+      line: 51
+      lineChar: 4
+      spanCodeSection: "public void ForceDrop()\r\n    "
+    - startInstruction: 1012
+      endInstruction: 1011
+      startSourceChar: 1174
+      endSourceChar: 1185
+      line: 52
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1012
+      endInstruction: 1011
+      startSourceChar: 1185
+      endSourceChar: 1185
+      line: 53
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1012
+      endInstruction: 1011
+      startSourceChar: 1185
+      endSourceChar: 1185
+      line: 53
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1012
+      endInstruction: 1011
+      startSourceChar: 1185
+      endSourceChar: 1185
+      line: 53
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1012
+      endInstruction: 1011
+      startSourceChar: 1185
+      endSourceChar: 1193
+      line: 53
+      lineChar: 8
+      spanCodeSection: pickupL.
+    - startInstruction: 1012
+      endInstruction: 1027
+      startSourceChar: 1193
+      endSourceChar: 1210
+      line: 53
+      lineChar: 16
+      spanCodeSection: "Drop();\r\n        "
+    - startInstruction: 1028
+      endInstruction: 1027
+      startSourceChar: 1210
+      endSourceChar: 1210
+      line: 54
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1028
+      endInstruction: 1027
+      startSourceChar: 1210
+      endSourceChar: 1210
+      line: 54
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1028
+      endInstruction: 1027
+      startSourceChar: 1210
+      endSourceChar: 1210
+      line: 54
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1028
+      endInstruction: 1027
+      startSourceChar: 1210
+      endSourceChar: 1218
+      line: 54
+      lineChar: 8
+      spanCodeSection: pickupR.
+    - startInstruction: 1028
+      endInstruction: 1051
+      startSourceChar: 1218
+      endSourceChar: 1242
+      line: 54
+      lineChar: 16
+      spanCodeSection: "Drop();\r\n    }\r\n\r\n\r\n    "
+    - startInstruction: 1052
+      endInstruction: 1071
+      startSourceChar: 1242
+      endSourceChar: 1275
+      line: 58
+      lineChar: 4
+      spanCodeSection: "public void PickupDisable()\r\n    "
+    - startInstruction: 1072
+      endInstruction: 1071
+      startSourceChar: 1275
+      endSourceChar: 1286
+      line: 59
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1072
+      endInstruction: 1071
+      startSourceChar: 1286
+      endSourceChar: 1286
+      line: 60
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1072
+      endInstruction: 1071
+      startSourceChar: 1286
+      endSourceChar: 1307
+      line: 60
+      lineChar: 8
+      spanCodeSection: 'pickupL.pickupable = '
+    - startInstruction: 1072
+      endInstruction: 1095
+      startSourceChar: 1307
+      endSourceChar: 1323
+      line: 60
+      lineChar: 29
+      spanCodeSection: "false;\r\n        "
+    - startInstruction: 1096
+      endInstruction: 1095
+      startSourceChar: 1323
+      endSourceChar: 1323
+      line: 61
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1096
+      endInstruction: 1095
+      startSourceChar: 1323
+      endSourceChar: 1344
+      line: 61
+      lineChar: 8
+      spanCodeSection: 'pickupR.pickupable = '
+    - startInstruction: 1096
+      endInstruction: 1127
+      startSourceChar: 1344
+      endSourceChar: 1365
+      line: 61
+      lineChar: 29
+      spanCodeSection: "false;\r\n    }\r\n\r\n    "
+    - startInstruction: 1128
+      endInstruction: 1147
+      startSourceChar: 1365
+      endSourceChar: 1397
+      line: 64
+      lineChar: 4
+      spanCodeSection: "public void PickupEnable()\r\n    "
+    - startInstruction: 1148
+      endInstruction: 1147
+      startSourceChar: 1397
+      endSourceChar: 1408
+      line: 65
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1148
+      endInstruction: 1147
+      startSourceChar: 1408
+      endSourceChar: 1408
+      line: 66
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1148
+      endInstruction: 1147
+      startSourceChar: 1408
+      endSourceChar: 1429
+      line: 66
+      lineChar: 8
+      spanCodeSection: 'pickupL.pickupable = '
+    - startInstruction: 1148
+      endInstruction: 1171
+      startSourceChar: 1429
+      endSourceChar: 1444
+      line: 66
+      lineChar: 29
+      spanCodeSection: "true;\r\n        "
+    - startInstruction: 1172
+      endInstruction: 1171
+      startSourceChar: 1444
+      endSourceChar: 1444
+      line: 67
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1172
+      endInstruction: 1171
+      startSourceChar: 1444
+      endSourceChar: 1465
+      line: 67
+      lineChar: 8
+      spanCodeSection: 'pickupR.pickupable = '
+    - startInstruction: 1172
+      endInstruction: 1203
+      startSourceChar: 1465
+      endSourceChar: 1485
+      line: 67
+      lineChar: 29
+      spanCodeSection: "true;\r\n    }\r\n\r\n    "
+    - startInstruction: 1204
+      endInstruction: 1223
+      startSourceChar: 1485
+      endSourceChar: 1519
+      line: 70
+      lineChar: 4
+      spanCodeSection: "public void ResetHandlePos()\r\n    "
+    - startInstruction: 1224
+      endInstruction: 1223
+      startSourceChar: 1519
+      endSourceChar: 1530
+      line: 71
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1224
+      endInstruction: 1223
+      startSourceChar: 1530
+      endSourceChar: 1530
+      line: 72
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1224
+      endInstruction: 1223
+      startSourceChar: 1530
+      endSourceChar: 1555
+      line: 72
+      lineChar: 8
+      spanCodeSection: 'leftHand.localPosition = '
+    - startInstruction: 1224
+      endInstruction: 1247
+      startSourceChar: 1555
+      endSourceChar: 1570
+      line: 72
+      lineChar: 33
+      spanCodeSection: "posL;\r\n        "
+    - startInstruction: 1248
+      endInstruction: 1247
+      startSourceChar: 1570
+      endSourceChar: 1570
+      line: 73
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1248
+      endInstruction: 1247
+      startSourceChar: 1570
+      endSourceChar: 1596
+      line: 73
+      lineChar: 8
+      spanCodeSection: 'rightHand.localPosition = '
+    - startInstruction: 1248
+      endInstruction: 1271
+      startSourceChar: 1596
+      endSourceChar: 1613
+      line: 73
+      lineChar: 34
+      spanCodeSection: "posR;\r\n\r\n        "
+    - startInstruction: 1272
+      endInstruction: 1271
+      startSourceChar: 1613
+      endSourceChar: 1613
+      line: 75
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1272
+      endInstruction: 1271
+      startSourceChar: 1613
+      endSourceChar: 1638
+      line: 75
+      lineChar: 8
+      spanCodeSection: 'leftHand.localRotation = '
+    - startInstruction: 1272
+      endInstruction: 1295
+      startSourceChar: 1638
+      endSourceChar: 1653
+      line: 75
+      lineChar: 33
+      spanCodeSection: "rotL;\r\n        "
+    - startInstruction: 1296
+      endInstruction: 1295
+      startSourceChar: 1653
+      endSourceChar: 1653
+      line: 76
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1296
+      endInstruction: 1295
+      startSourceChar: 1653
+      endSourceChar: 1679
+      line: 76
+      lineChar: 8
+      spanCodeSection: 'rightHand.localRotation = '
+    - startInstruction: 1296
+      endInstruction: 1296
+      startSourceChar: 1679
+      endSourceChar: 1679
+      line: 76
+      lineChar: 34
+      spanCodeSection: 
+  hasInteractEvent: 0
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: fieldDefinitions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[UdonSharp.FieldDefinition,
+        UdonSharp.Editor]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: leftHand
+    - Name: $v
+      Entry: 7
+      Data: 2|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 3|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Transform, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineTransform
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: leftHand
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: leftHand
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: rightHand
+    - Name: $v
+      Entry: 7
+      Data: 6|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 7|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 4
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineTransform
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: rightHand
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: rightHand
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: pickupL
+    - Name: $v
+      Entry: 7
+      Data: 9|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 10|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 11|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: VRC.SDKBase.VRC_Pickup, VRCSDKBase
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: VRCSDK3ComponentsVRCPickup
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: pickupL
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: pickupL
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: pickupR
+    - Name: $v
+      Entry: 7
+      Data: 13|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 14|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 11
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: VRCSDK3ComponentsVRCPickup
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: pickupR
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: pickupR
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 12
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: posL
+    - Name: $v
+      Entry: 7
+      Data: 15|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 16|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 17|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineVector3
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: posL
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: posL
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 18|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: posR
+    - Name: $v
+      Entry: 7
+      Data: 19|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 20|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 17
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineVector3
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: posR
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: posR
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 18
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: rotL
+    - Name: $v
+      Entry: 7
+      Data: 21|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 22|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 23|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Quaternion, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineQuaternion
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: rotL
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: rotL
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 24|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: rotR
+    - Name: $v
+      Entry: 7
+      Data: 25|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 26|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 23
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineQuaternion
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: rotR
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: rotR
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 9
+      Data: 24
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: angleText
+    - Name: $v
+      Entry: 7
+      Data: 27|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 28|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 29|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.UI.Text, UnityEngine.UI
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineUIText
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: angleText
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: angleText
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 30|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: angle
+    - Name: $v
+      Entry: 7
+      Data: 31|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 32|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 33|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Single, mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 1
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: SystemSingle
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: angle
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: angle
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 34|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 35|UdonSharp.UdonSyncedAttribute, UdonSharp.Runtime
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
