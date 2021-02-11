@@ -4,7 +4,7 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-// ƒCƒ“ƒ^ƒ‰ƒNƒgŽž‚ÉŽw’è‚µ‚½UDON‚ÌŠÖ”‚ðŽÀs‚·‚éƒVƒ“ƒvƒ‹‚ÈƒXƒCƒbƒ`
+// ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ãƒˆæ™‚ã«æŒ‡å®šã—ãŸUDONã®é–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹ã‚·ãƒ³ãƒ—ãƒ«ãªã‚¹ã‚¤ãƒƒãƒ
 
 public class SimpleSwitch : UdonSharpBehaviour
 {
