@@ -4,7 +4,7 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-// ピックアップ時に消える機能
+// 繝斐ャ繧ｯ繧｢繝�繝玲凾縺ｫ豸医∴繧区ｩ溯�ｽ
 
 public class SimplePickUpHide : UdonSharpBehaviour
 {

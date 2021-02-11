@@ -18,7 +18,7 @@ public class UdonCarWheelVisual : UdonSharpBehaviour
 
     public Vector3 rotationAxis = new Vector3(0,1,0);
 
-    public const float VISUAL_WHEEL_SPEED = 5.0f;  // ƒ^ƒCƒ„‚ÌŒ©‚½–Ú‚Ì‰ñ“]‘¬“xŒW”
+    public const float VISUAL_WHEEL_SPEED = 5.0f;  // ã‚¿ã‚¤ãƒ¤ã®è¦‹ãŸç›®ã®å›è»¢é€Ÿåº¦ä¿‚æ•°
     
     void Start()
     {

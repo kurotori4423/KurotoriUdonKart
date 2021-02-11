@@ -13,14 +13,14 @@ public class UdonCarSystem : UdonSharpBehaviour
     public WheelCollider leftRearWheel;
     public WheelCollider rightRearWheel;
 
-    public const float MAX_SPEED = 150.0f;          // Å‘åƒXƒs[ƒh
-    public const float MAX_MOTOR_TORQUE = 300;      // Å‘åƒ‚[ƒ^[ƒgƒ‹ƒN
-    public const float MAX_STEERING_ANGLE = 30;     // Å‘åƒXƒeƒAƒŠƒ“ƒOŠp“x
-    public const float MAX_STEERING_ANGLE_VR = 60.0f; // VR‚Å‚ÌÅ‘åƒXƒeƒAƒŠƒ“ƒOŠp“x
-    public const float MAX_BRAKE_TORQUE = 100;      // Å‘åƒuƒŒ[ƒLƒgƒ‹ƒN
-    public const float CONST_BRAKE_TORQUE = 0.0f;   // Pí“I‚ÈƒuƒŒ[ƒL
-    public const float DOWN_FORCE = 0.1f;           // ƒ_ƒEƒ“ƒtƒH[ƒX‚Ì‹­‚³
-    public const float CENTER_MASS_POS = 0.0f;      // dS‚Ì’á‚³
+    public const float MAX_SPEED = 150.0f;          // æœ€å¤§ã‚¹ãƒ”ãƒ¼ãƒ‰
+    public const float MAX_MOTOR_TORQUE = 300;      // æœ€å¤§ãƒ¢ãƒ¼ã‚¿ãƒ¼ãƒˆãƒ«ã‚¯
+    public const float MAX_STEERING_ANGLE = 30;     // æœ€å¤§ã‚¹ãƒ†ã‚¢ãƒªãƒ³ã‚°è§’åº¦
+    public const float MAX_STEERING_ANGLE_VR = 60.0f; // VRã§ã®æœ€å¤§ã‚¹ãƒ†ã‚¢ãƒªãƒ³ã‚°è§’åº¦
+    public const float MAX_BRAKE_TORQUE = 100;      // æœ€å¤§ãƒ–ãƒ¬ãƒ¼ã‚­ãƒˆãƒ«ã‚¯
+    public const float CONST_BRAKE_TORQUE = 0.0f;   // æ’å¸¸çš„ãªãƒ–ãƒ¬ãƒ¼ã‚­
+    public const float DOWN_FORCE = 0.1f;           // ãƒ€ã‚¦ãƒ³ãƒ•ã‚©ãƒ¼ã‚¹ã®å¼·ã•
+    public const float CENTER_MASS_POS = 0.0f;      // é‡å¿ƒã®ä½ã•
 
     public UdonCarSeat carSeat;
     public VehicleHandle VRHandle;
@@ -48,7 +48,7 @@ public class UdonCarSystem : UdonSharpBehaviour
 
     private bool vrMode;
 
-    // ‘¬“x‚ªã‚ª‚é‚Ù‚Çƒnƒ“ƒhƒ‹‚Ì‚«‚«‚ğ—}§‚·‚éB
+    // é€Ÿåº¦ãŒä¸ŠãŒã‚‹ã»ã©ãƒãƒ³ãƒ‰ãƒ«ã®ããã‚’æŠ‘åˆ¶ã™ã‚‹ã€‚
     float HandleMapping(float sp, float maxsp, float min)
     {
         return Mathf.Clamp((Mathf.Abs(sp) * (-min / maxsp) + 1.0f), min, 1.0f);
@@ -120,7 +120,7 @@ public class UdonCarSystem : UdonSharpBehaviour
             CalcCarVelocity();
             MessageUpdate();
             ControllerEditorDebug();
-            // ƒ_ƒEƒ“ƒtƒH[ƒX
+            // ãƒ€ã‚¦ãƒ³ãƒ•ã‚©ãƒ¼ã‚¹
             rigidBody.AddForce(0, Mathf.Abs(velocity) * DOWN_FORCE, 0);
             return;
         }
@@ -137,7 +137,7 @@ public class UdonCarSystem : UdonSharpBehaviour
         AdjustSpeed();
         CalcCarVelocity();
 
-        // ~Ô‚ÌƒI[ƒgƒuƒŒ[ƒL
+        // é™è»Šæ™‚ã®ã‚ªãƒ¼ãƒˆãƒ–ãƒ¬ãƒ¼ã‚­
         if (!seated)
         {
             leftFrontWheel.brakeTorque = 10000.0f;
@@ -155,7 +155,7 @@ public class UdonCarSystem : UdonSharpBehaviour
             rightRearWheel.brakeTorque = .0f;
         }
         
-        // ƒ_ƒEƒ“ƒtƒH[ƒX
+        // ãƒ€ã‚¦ãƒ³ãƒ•ã‚©ãƒ¼ã‚¹
         rigidBody.AddForce(0, Mathf.Abs(velocity) * DOWN_FORCE, 0);
         
         if(vrMode)
@@ -276,7 +276,7 @@ public class UdonCarSystem : UdonSharpBehaviour
 
     private void ControllerEditorDebug()
     {
-        // Editorƒ‚[ƒh‚Å‚ÌƒfƒoƒbƒO
+        // Editorãƒ¢ãƒ¼ãƒ‰ã§ã®ãƒ‡ãƒãƒƒã‚°
 
         leftFrontWheel.brakeTorque = .0f;
         rightFrontWheel.brakeTorque = .0f;
@@ -302,7 +302,7 @@ public class UdonCarSystem : UdonSharpBehaviour
 
     public void ResetTransform()
     {
-        // ’n‰º‚É”ò‚Î‚µ‚Ä‹­§ƒeƒŒƒ|[ƒg‚³‚¹‚éB
+        // åœ°ä¸‹ã«é£›ã°ã—ã¦å¼·åˆ¶ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã•ã›ã‚‹ã€‚
         transform.position = new Vector3(0,-1000,0);
         transform.rotation = resetRot;
 

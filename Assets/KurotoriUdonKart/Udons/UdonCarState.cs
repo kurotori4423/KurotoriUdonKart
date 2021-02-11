@@ -4,7 +4,7 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-// Ô‚Ìó‘Ô‚ğ“¯Šú•Û‚·‚é‚½‚ß‚ÌUDON
+// è»Šã®çŠ¶æ…‹ã‚’åŒæœŸä¿æŒã™ã‚‹ãŸã‚ã®UDON
 
 public class UdonCarState : UdonSharpBehaviour
 {
@@ -43,7 +43,7 @@ public class UdonCarState : UdonSharpBehaviour
 
         if (!Networking.IsOwner(Networking.LocalPlayer, gameObject)) return;
 
-        // ƒI[ƒi[‚Å‚Ì‚İ“®ì
+        // ã‚ªãƒ¼ãƒŠãƒ¼ã§ã®ã¿å‹•ä½œ
 
         steering = carSystem.steering;
         velocity = carSystem.velocity;
