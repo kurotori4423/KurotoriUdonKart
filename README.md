@@ -29,26 +29,26 @@ UnityPackage : https://github.com/kurotori4423/KurotoriUdonKart/releases
 
 # Kurotori Udon Kart System [EN]
 
-Cart system that can be handled by a motion controller
+Cart system that supports motion controller steering
 
 UnityPackage : https://github.com/kurotori4423/KurotoriUdonKart/releases
 
-- Compatible with steering wheel operation with a motion controller.
-- Desktop mode support (WASD operation)
-- The seat height can be changed to match the height of your avatar.
+- Supports steering with VR motion controllers
+- Desktop mode support (WASD keys)
+- Seat height can be adjusted to match the height of your avatar.
 - Visual synchronization (tire rotation, steering)
 - Support for Oculus Quest
-- time attack system
+- Time Attack system
 
 ## Requirements
 
 - VRCSDK3-UDON-2020.04.17.11.43 or higher
 - UdonSharp_v0.15.5 or higher　https://github.com/Merlin-san/UdonSharp
-- TextMeshPro(for demo scene)
+- TextMeshPro (for demo scene)
 
 ## Installation
 
-1. import VRCSDK3
-2. importing UdonSharp
-Import TextMeshPro by [Window]->[TextMeshPro]->[Import TMP Essential Resources].
-4. import KurotoriUdonKart
+1. Import VRCSDK3
+2. Import UdonSharp
+3. Import TextMeshPro from [Window]->[TextMeshPro]->[Import TMP Essential Resources].
+4. Import KurotoriUdonKart
