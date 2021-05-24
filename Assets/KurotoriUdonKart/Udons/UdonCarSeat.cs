@@ -13,6 +13,8 @@ public class UdonCarSeat : UdonSharpBehaviour
     public GameObject throttleR, throttleL, handle, seatSetting, carState;
     public GameObject leaveButton;
 
+    public VRCStation station;
+
     public GameObject[] SyncUdonObjects;
 
     void Start()
@@ -47,7 +49,8 @@ public class UdonCarSeat : UdonSharpBehaviour
 
     public void LeaveSeat()
     {
-        Networking.LocalPlayer.TeleportTo(exitPoint.transform.position, exitPoint.transform.rotation);
+        //Networking.LocalPlayer.TeleportTo(exitPoint.transform.position, exitPoint.transform.rotation);
+        station.ExitStation(Networking.LocalPlayer);
         leaveButton.SetActive(false);
     }
 }

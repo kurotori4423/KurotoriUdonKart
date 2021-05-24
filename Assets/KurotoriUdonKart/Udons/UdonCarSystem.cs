@@ -21,6 +21,8 @@ public class UdonCarSystem : UdonSharpBehaviour
     public const float CONST_BRAKE_TORQUE = 0.0f;   // 恒常的なブレーキ
     public const float DOWN_FORCE = 0.1f;           // ダウンフォースの強さ
     public const float CENTER_MASS_POS = 0.0f;      // 重心の低さ
+    
+    public const float steerHelper = 0.0f; // ステアリング補助
 
     public UdonCarSeat carSeat;
     public VehicleHandle VRHandle;
@@ -47,6 +49,7 @@ public class UdonCarSystem : UdonSharpBehaviour
     private Rigidbody rigidBody;
 
     private bool vrMode;
+    private float oldRotation;
 
     // 速度が上がるほどハンドルのききを抑制する。
     float HandleMapping(float sp, float maxsp, float min)
@@ -116,6 +119,7 @@ public class UdonCarSystem : UdonSharpBehaviour
 
         if (Networking.LocalPlayer == null)
         {
+            SteerHelper();
             AdjustSpeed();
             CalcCarVelocity();
             MessageUpdate();
@@ -134,6 +138,7 @@ public class UdonCarSystem : UdonSharpBehaviour
 
         if (!Networking.IsOwner(gameObject)) return;
 
+        SteerHelper();
         AdjustSpeed();
         CalcCarVelocity();
 
@@ -298,6 +303,17 @@ public class UdonCarSystem : UdonSharpBehaviour
         rightFrontWheel.brakeTorque = brake;
         leftRearWheel.brakeTorque = brake;
         rightRearWheel.brakeTorque = brake;
+    }
+
+    private void SteerHelper()
+    {
+        if(Mathf.Abs(oldRotation - transform.eulerAngles.y) < 10f)
+        {
+            var turnadjust = (transform.eulerAngles.y - oldRotation) * steerHelper;
+            Quaternion velRotation = Quaternion.AngleAxis(turnadjust, Vector3.up);
+            rigidBody.velocity = velRotation * rigidBody.velocity;
+        }
+        oldRotation = transform.eulerAngles.y;
     }
 
     public void ResetTransform()
