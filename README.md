@@ -16,8 +16,8 @@ UnityPackage : https://github.com/kurotori4423/KurotoriUdonKart/releases
 
 ## 前提アセット
 
-- VRCSDK3-UDON-2020.04.17.11.43 以上のバージョン
-- UdonSharp_v0.15.5 以上のバージョン　https://github.com/Merlin-san/UdonSharp
+- VRCSDK3-WORLD-2021.05.21.12.13_Public 以上のバージョン
+- UdonSharp_v0.19.11 以上のバージョン　https://github.com/Merlin-san/UdonSharp
 - TextMeshPro(デモ用に必要)
 
 ## 導入方法
@@ -42,8 +42,8 @@ UnityPackage : https://github.com/kurotori4423/KurotoriUdonKart/releases
 
 ## Requirements
 
-- VRCSDK3-UDON-2020.04.17.11.43 or higher
-- UdonSharp_v0.15.5 or higher　https://github.com/Merlin-san/UdonSharp
+- VRCSDK3-WORLD-2021.05.21.12.13_Public or higher
+- UdonSharp_v0.19.11 or higher　https://github.com/Merlin-san/UdonSharp
 - TextMeshPro(for demo scene)
 
 ## Installation
